@@ -1,7 +1,7 @@
 import requests
 import sys
 import urllib3
-urllib3.disable_warnings(urllib3.exeptions.InsecureRequestWarning)
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 proxies = {'http': 'http://127.0.0.1:8080', 'https': 'http://127.0.0.1:8080'}
 
@@ -12,11 +12,11 @@ def check_admin_hostname(url):
         hostname = 'http://192.168.0.%s:8080/admin' %i
         params = {'stockApi': hostname}
         r = requests.post(url + check_stock_path, data=params, verify=False, proxies=proxies)
-        if r.status-code == 200:
+        if r.status_code == 200:
             admin_ip_address = '192.168.0.%s' %i
             break
 
-    if admin_ip_address = '':
+    if admin_ip_address == '':
         print("(-) Could not find admin hostname.")
     return admin_ip_address
 

